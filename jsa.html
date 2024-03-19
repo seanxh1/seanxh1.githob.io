@@ -1,0 +1,95 @@
+
+
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>注册表单</title>  
+    <!-- 可以在<head>中包含JavaScript代码 -->  
+    <script>  
+        function showError(message) {  
+            var errorMessages = document.getElementById('errorMessages');  
+            errorMessages.innerHTML = message;  
+        }  
+  
+        function isValidEmail(email) {  
+            // 这里添加你的邮箱验证逻辑  
+            // 这里只是一个简单的示例，实际情况需要更复杂的验证  
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  
+            return emailRegex.test(email);  
+        }  
+  
+        window.onload = function() {  
+            document.getElementById('registerForm').addEventListener('submit', function(event) {  
+                event.preventDefault();  
+                var name = document.getElementById('name').value;  
+                var email = document.getElementById('email').value;  
+                var password = document.getElementById('password').value;  
+                var errorMessages = document.getElementById('errorMessages');  
+                errorMessages.innerHTML = '';  
+  
+                if (name == '') {  
+                    showError('姓名不能为空');  
+                    return;  
+                }  
+                if (email == '') {  
+                    showError('邮箱不能为空');  
+                    return;  
+                } else if (!isValidEmail(email)) {  
+                    showError('邮箱格式不正确');  
+                    return;  
+                }  
+                if (password == '') {  
+                    showError('密码不能为空');  
+                    return;  
+                } else if (password.length < 6) {  
+                    showError('密码长度至少为6个字符');  
+                    return;  
+                }  
+                // 如果没有错误，可以在这里提交表单或执行其他操作  
+            });  
+        };  
+         // 假设这是一个从后端获取的注册状态，实际使用时需要替换为真实的逻辑  
+         var isRegistered = false;  
+  
+  function showLoginButton() {  
+      if (isRegistered) {  
+          // 如果已注册，显示登录按钮  
+          document.getElementById('login-button').style.display = 'inline-block';  
+      } else {  
+          // 如果没有注册，隐藏登录按钮  
+          document.getElementById('login-button').style.display = 'none';  
+      }  
+  }  
+
+  // 假设这是注册成功后调用的函数  
+  function registerSuccess() {  
+      isRegistered = true;  
+      showLoginButton();  
+  }  
+
+  // 页面加载完成后检查并显示或隐藏登录按钮  
+  window.onload = showLoginButton; 
+    </script>  
+</head>  
+<body>  
+    <h1>注册表单</h1>  
+    <form id="registerForm">  
+        <label for="name">姓名:</label>  
+        <input type="text" id="name" name="name" required>  
+  
+        <label for="email">邮箱:</label>  
+        <input type="email" id="email" name="email" required>  
+  
+        <label for="password">密码:</label>  
+        <input type="password" id="password" name="password" required>  
+  
+        <div id="errorMessages"></div>  
+  
+        <input  onclick="registerSuccess()" type="submit" value="注册">
+       
+        <!-- 登录按钮默认隐藏 -->  
+        <button id="login-button" style="display: none"; onclick="window.location.href='https://seanxh1.github.io/seanxh1.githob.io/School%20Profile.html'">登录</button> 
+    </form>  
+</body>  
+</html>
