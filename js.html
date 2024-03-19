@@ -49,6 +49,27 @@
                 // 如果没有错误，可以在这里提交表单或执行其他操作  
             });  
         };  
+         // 假设这是一个从后端获取的注册状态，实际使用时需要替换为真实的逻辑  
+         var isRegistered = false;  
+  
+  function showLoginButton() {  
+      if (isRegistered) {  
+          // 如果已注册，显示登录按钮  
+          document.getElementById('login-button').style.display = 'inline-block';  
+      } else {  
+          // 如果没有注册，隐藏登录按钮  
+          document.getElementById('login-button').style.display = 'none';  
+      }  
+  }  
+
+  // 假设这是注册成功后调用的函数  
+  function registerSuccess() {  
+      isRegistered = true;  
+      showLoginButton();  
+  }  
+
+  // 页面加载完成后检查并显示或隐藏登录按钮  
+  window.onload = showLoginButton; 
     </script>  
 </head>  
 <body>  
@@ -65,7 +86,10 @@
   
         <div id="errorMessages"></div>  
   
-        <input type="submit" value="注册">  
+        <input  onclick="registerSuccess()" type="submit" value="注册">
+       
+        <!-- 登录按钮默认隐藏 -->  
+        <button id="login-button" style="display: none"; onclick="window.location.href='https://seanxh1.github.io/seanxh1.githob.io/School%20Profile.html'">登录</button> 
     </form>  
 </body>  
 </html>
