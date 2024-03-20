@@ -117,6 +117,93 @@
         
         
     </div>
+  <!-- ======= Events Section ======= -->
+      <!-- HTML form with input fields -->
+      <form id="enquiryForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br><br>
+       
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br><br>
+       
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select><br><br>
+       
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone"><br><br>
+       
+        <label for="enquiry">Enquiry:</label>
+        <textarea id="enquiry" name="enquiry" maxlength="150"></textarea><br><br>
+       
+        <input type="submit" value="Submit">
+    </form>
+   
+    <script>
+      // Get form and input elements
+  const form = document.getElementById("enquiryForm");
+  const firstName = document.getElementById("firstName");
+  const lastName = document.getElementById("lastName");
+  const gender = document.getElementById("gender");
+  const phone = document.getElementById("phone");
+  const enquiry = document.getElementById("enquiry");
+  
+  // Event listener for form submission
+  form.addEventListener("submit", function(event) {
+   event.preventDefault(); // Prevent form submission
+   validateForm(); // Call validation function
+  });
+  
+  // Validation function for form input fields
+  function validateForm() {
+   if (firstName.value === "") {
+     alert("Please enter your first name.");
+     return false;
+   }
+   if (!/^[a-zA-Z]+$/.test(firstName.value)) {
+     alert("First name should contain only letters.");
+     return false;
+   }
+   if (lastName.value === "") {
+     alert("Please enter your last name.");
+     return false;
+   }
+   if (!/^[a-zA-Z]+$/.test(lastName.value)) {
+     alert("Last name should contain only letters.");
+     return false;
+   }
+   if (gender.value === "") {
+     alert("Please select your gender.");
+     return false;
+   }
+   if (gender.value !== "Male" && gender.value !== "Female") {
+     alert("Gender should be Male or Female.");
+     return false;
+   }
+   if (phone.value === "") {
+     alert("Please enter your phone number.");
+     return false;
+   }
+   if (!/^\d+$/.test(phone.value)) {
+     alert("Phone number should contain only numbers.");
+     return false;
+   }
+   if (enquiry.value === "") {
+     alert("Please enter your enquiry.");
+     return false;
+   }
+   if (enquiry.value.length > 150) {
+     alert("Enquiry should not exceed 150 words.");
+     return false;
+   }
+   // If all validations pass, you can proceed with form submission or any other actions
+   alert("Form submitted successfully!");
+   return true;
+  }
+     </script>
     <div class="footer">
         Copyright &copy; Computer Information Technology Education school
     </div>
